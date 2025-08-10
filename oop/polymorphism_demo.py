@@ -1,35 +1,25 @@
-# oop/book_class.py
+# oop/polymorphism_demo.py
 
-class Book:
-    def __init__(self, title: str, author: str, year: int):
-        """
-        Constructor to initialize the Book instance.
-        :param title: Title of the book
-        :param author: Author of the book
-        :param year: Publication year of the book
-        """
-        self.title = title
-        self.author = author
-        self.year = year
+import math
 
-    def __del__(self):
-        """
-        Destructor called when the object is deleted.
-        Prints a message indicating the book is being deleted.
-        """
-        print(f"Deleting {self.title}")
+class Shape:
+    def area(self):
+        """Base method to be overridden by subclasses"""
+        raise NotImplementedError("Subclasses must implement this method")
 
-    def __str__(self):
-        """
-        Informal string representation for the user.
-        :return: A readable string with book details.
-        """
-        return f"{self.title} by {self.author}, published in {self.year}"
+class Rectangle(Shape):
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
 
-    def __repr__(self):
-        """
-        Official string representation for developers.
-        Should ideally return a string that can recreate the object.
-        :return: A recreatable representation of the book.
-        """
-        return f"Book('{self.title}', '{self.author}', {self.year})"
+    def area(self):
+        """Calculate area of rectangle"""
+        return self.length * self.width
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        """Calculate area of circle"""
+        return math.pi * (self.radius ** 2)
